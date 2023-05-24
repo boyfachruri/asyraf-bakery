@@ -33,7 +33,7 @@ class PenjualanController extends Controller
 
     public function tableDetailPenjualan($id)
     {
-        # code...
+        # code...ph
         // $penjualan = DB::select('SELECT * FROM tb_penjualan inner join tb_penjualan_detail on tb_penjualan.no_transaksi = tb_penjualan_detail.no_transaksi');
         $penjualan = DB::select("SELECT * FROM tb_penjualan_detail inner join tb_produk on tb_penjualan_detail.kode_produk = tb_produk.kode_produk where no_transaksi = '$id'");
         // $penjualan = DB::select("SELECT * FROM tb_penjualan_detail where no_transaksi = '$id'");

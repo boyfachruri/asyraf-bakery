@@ -10,6 +10,7 @@
         <div class="form-control-wrap"> <input type="email" class="form-control" autocomplete="off" name="email"
                 id="email" placeholder="Email" required> </div>
     </div>
+    {{-- test --}}
     {{-- <div class="form-group"> <label class="form-label"
         for="password">Masukkan Password</label>
     <div class="form-control-wrap"> <input type="password"
