@@ -11,18 +11,6 @@
                         <div class="toggle-wrap nk-block-tools-toggle">
                             <a href="#" class="btn btn-icon btn-trigger toggle-expand mr-n1"
                                 data-target="more-options"><em class="icon ni ni-more-v"></em></a>
-                            <div class="toggle-expand-content" data-content="more-options">
-                                <ul class="nk-block-tools g-3">
-                                    <li class="nk-block-tools-opt">
-                                        <!-- Modal Trigger Code -->
-                                        {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalDefault"><em class="icon ni ni-plus"></em><span>Tambah</span></button> --}}
-                                        <button type="button" class="btn btn-primary" id="uploadpenjualan"><em
-                                                class="icon ni ni-plus"></em><span>Tambah</span></button>
-                                        {{-- <a href="#" class="btn btn-icon btn-primary d-md-none"><em class="icon ni ni-plus"></em></a>
-                                        <a href="#" class="btn btn-primary d-none d-md-inline-flex"><em class="icon ni ni-plus"></em><span>Tambah</span></a> --}}
-                                    </li>
-                                </ul>
-                            </div>
                         </div>
                     </div><!-- .nk-block-head-content -->
                 </div><!-- .nk-block-between -->
@@ -35,7 +23,9 @@
                         <th>No Transaksi</th>
                         <th>Total Transaksi</th>
                         <th>Tanggal Transaksi</th>
+                        <th>Status</th>
                         <th>Detail</th>
+                        <th></th>
                     </thead>
                     <tbody>
 
@@ -77,6 +67,13 @@
                         return tanggal + "/" + bulan + "/" + tahun + " " + waktu;
                     }
                 },
+                {
+                    data: 'status',
+                    render: function(data, type, row) {
+                        var statusColorClass = (data.toLowerCase() === 'cancelled') ? 'text-danger' : 'text-success';
+                        return '<span class="' + statusColorClass + '">' + data + '</span>';
+                    }
+                },
                 // {
                 //     data: 'no_transaksi',
                 //     render: function(data, type, row) {
@@ -98,6 +95,20 @@
                     "data": null,
                     "defaultContent": '<a class="btn btn-icon btn-trigger"><em class="icon ni ni-plus-sm"></em></a>',
                 },
+                {
+                    data: 'id_penjualan',
+                    render: function(data, type, row) {
+                        return '<div class="drodown">' +
+                            '<a href="#" class="dropdown-toggle btn btn-icon btn-trigger" data-toggle="dropdown">' +
+                            '<em class="icon ni ni-more-h"></em></a>' +
+                            '<div class="dropdown-menu dropdown-menu-right">' +
+                            '<ul class="link-list-opt no-bdr">' +
+                            '<li><a href="#" onClick=hapusProduk("'+row.id_penjualan+'")><em class="icon ni ni-delete"></em><span>Cancel</span></a></li>' +
+                            '</ul>' +
+                            '</div>' +
+                            '</div>';
+                    }
+                }
             ],
             // dom: '<"toolbar akun">frtip',
         });
@@ -172,36 +183,10 @@
             return html;
         }
 
-
-
-
-
-        $('#uploadpenjualan').click(function() {
-            $('#modaldialog').addClass('modal-sm');
-            $('#modaltitle').addClass('white');
-            $('#modaltitle').html('Upload Data Penjualan');
-            $('#modalbody').load('viewpenjualan');
-            $('#modalDefault').data('id', 0);
-            $('#modalDefault').modal('show');
-            $('.modal-footer').hide();
-        })
-
-        // $('#edituser').click(function() {
-        function editProduk(id) {
-            // alert(id);
-            $('#modaldialog').addClass('modal-sm');
-            $('#modaltitle').addClass('white');
-            $('#modaltitle').html('Edit Produk');
-            $('#modalbody').load('viewprodukupdate');
-            $('#modalDefault').data('id', id);
-            $('#modalDefault').modal('show');
-            $('.modal-footer').hide();
-        }
-
         function hapusProduk(id) {
             Swal.fire({
                 title: 'Apakah kamu yakin?',
-                text: 'Data akan terhapus permanen',
+                text: 'Data akan di cancel',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -219,7 +204,7 @@
 
         function Delete(id) {
             $.ajax({
-                url: "{{ url('/deleteProduk') }}",
+                url: "{{ url('/cancelPenjualan') }}",
                 type: "POST",
                 data: {
                     id: id,

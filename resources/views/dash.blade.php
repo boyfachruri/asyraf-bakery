@@ -8,22 +8,23 @@
                 </div><!-- .nk-block-head-content -->
                 <div class="nk-block-head-content">
                     <div class="toggle-wrap nk-block-tools-toggle">
-                        <a href="#" class="btn btn-icon btn-trigger toggle-expand mr-n1" data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
+                        <a href="#" class="btn btn-icon btn-trigger toggle-expand mr-n1" data-target="pageMenu"><em
+                                class="icon ni ni-more-v"></em></a>
                         <div class="toggle-expand-content" data-content="pageMenu">
                             <ul class="nk-block-tools g-3">
                                 <li>
-                                    <div class="drodown">
-                                        <a href="#" class="dropdown-toggle btn btn-white btn-dim btn-outline-light" data-toggle="dropdown"><em class="d-none d-sm-inline icon ni ni-calender-date"></em><span><span class="d-none d-md-inline">Last</span> 30 Days</span><em class="dd-indc icon ni ni-chevron-right"></em></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
+                                    {{-- <div class="drodown"> --}}
+                                    <a href="#" class="btn btn-white "
+                                        data-toggle="dropdown"><span><span class="d-none d-md-inline">Hari</span>
+                                            Ini</span></a>
+                                    {{-- <div class="dropdown-menu dropdown-menu-right">
                                             <ul class="link-list-opt no-bdr">
-                                                <li><a href="#"><span>Last 30 Days</span></a></li>
-                                                <li><a href="#"><span>Last 6 Months</span></a></li>
-                                                <li><a href="#"><span>Last 1 Years</span></a></li>
+                                                <li><a href="#"><span>Hari Ini</span></a></li>
                                             </ul>
-                                        </div>
-                                    </div>
+                                        </div> --}}
+                                    {{-- </div> --}}
                                 </li>
-                                <li class="nk-block-tools-opt"><a href="#" class="btn btn-primary"><em class="icon ni ni-reports"></em><span>Reports</span></a></li>
+                                {{-- <li class="nk-block-tools-opt"><a href="#" class="btn btn-primary"><em class="icon ni ni-reports"></em><span>Reports</span></a></li> --}}
                             </ul>
                         </div>
                     </div>
@@ -38,17 +39,20 @@
                             <div class="card-inner">
                                 <div class="card-title-group">
                                     <div class="card-title">
-                                        <h6 class="title">Total Produk</h6>
+                                        <h6 class="title">Total Transaksi</h6>
                                     </div>
                                 </div>
                                 <div class="data">
                                     <div class="data-group">
-                                        <div class="amount">1,945</div>
+                                        <div class="amount">{{ $jumlahTransaksi }}</div>
                                         <div class="nk-ecwg6-ck">
                                             <canvas class="ecommerce-line-chart-s3" id="todayOrders"></canvas>
                                         </div>
                                     </div>
-                                    <div class="info"><span class="change up text-danger"><em class="icon ni ni-arrow-long-up"></em>4.63%</span><span> vs. last week</span></div>
+                                    {{-- <div class="info"><span class="change up text-danger"><em
+                                                class="icon ni ni-arrow-long-up"></em>4.63%</span><span> vs. last
+                                            week</span>
+                                    </div> --}}
                                 </div>
                             </div><!-- .card-inner -->
                         </div><!-- .nk-ecwg -->
@@ -65,12 +69,15 @@
                                 </div>
                                 <div class="data">
                                     <div class="data-group">
-                                        <div class="amount">$2,338</div>
+                                        <div class="amount" id="amount">{{ $jumlahPendapatan }}</div>
                                         <div class="nk-ecwg6-ck">
                                             <canvas class="ecommerce-line-chart-s3" id="todayRevenue"></canvas>
                                         </div>
                                     </div>
-                                    <div class="info"><span class="change down text-danger"><em class="icon ni ni-arrow-long-down"></em>2.34%</span><span> vs. last week</span></div>
+                                    {{-- <div class="info"><span class="change down text-danger"><em
+                                                class="icon ni ni-arrow-long-down"></em>2.34%</span><span> vs. last
+                                            week</span>
+                                    </div> --}}
                                 </div>
                             </div><!-- .card-inner -->
                         </div><!-- .nk-ecwg -->
@@ -120,7 +127,7 @@
                         </div><!-- .nk-ecwg -->
                     </div><!-- .card -->
                 </div><!-- .col --> --}}
-                <div class="col-xxl-6">
+                {{-- <div class="col-xxl-6">
                     <div class="card card-full">
                         <div class="nk-ecwg nk-ecwg8 h-100">
                             <div class="card-inner">
@@ -130,7 +137,9 @@
                                     </div>
                                     <div class="card-tools">
                                         <div class="dropdown">
-                                            <a href="#" class="dropdown-toggle link link-light link-sm dropdown-indicator" data-toggle="dropdown">Weekly</a>
+                                            <a href="#"
+                                                class="dropdown-toggle link link-light link-sm dropdown-indicator"
+                                                data-toggle="dropdown">Weekly</a>
                                             <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
                                                 <ul class="link-list-opt no-bdr">
                                                     <li><a href="#"><span>Daily</span></a></li>
@@ -165,32 +174,32 @@
                             </div><!-- .card-inner -->
                         </div>
                     </div><!-- .card -->
-                </div><!-- .col -->
+                </div><!-- .col --> --}}
                 <div class="col-xxl-3 col-md-6">
                     <div class="card card-full overflow-hidden">
                         <div class="nk-ecwg nk-ecwg7 h-100">
                             <div class="card-inner flex-grow-1">
                                 <div class="card-title-group mb-4">
                                     <div class="card-title">
-                                        <h6 class="title">Order Statistics</h6>
+                                        <h6 class="title">Statistik Penjualan</h6>
                                     </div>
                                 </div>
                                 <div class="nk-ecwg7-ck">
-                                    <canvas class="ecommerce-doughnut-s1" id="orderStatistics"></canvas>
+                                    <canvas class="ecommerce-doughnut-s1" id="orderStatistic"></canvas>
                                 </div>
                                 <ul class="nk-ecwg7-legends">
                                     <li>
                                         <div class="title">
                                             <span class="dot dot-lg sq" data-bg="#816bff"></span>
-                                            <span>Completed</span>
+                                            <span>Success</span>
                                         </div>
                                     </li>
-                                    <li>
+                                    {{-- <li>
                                         <div class="title">
                                             <span class="dot dot-lg sq" data-bg="#13c9f2"></span>
                                             <span>Processing</span>
                                         </div>
-                                    </li>
+                                    </li> --}}
                                     <li>
                                         <div class="title">
                                             <span class="dot dot-lg sq" data-bg="#ff82b7"></span>
@@ -202,7 +211,7 @@
                         </div>
                     </div><!-- .card -->
                 </div><!-- .col -->
-                <div class="col-xxl-3 col-md-6">
+                {{-- <div class="col-xxl-3 col-md-6">
                     <div class="card h-100">
                         <div class="card-inner">
                             <div class="card-title-group mb-2">
@@ -382,93 +391,37 @@
                             </div>
                         </div>
                     </div><!-- .card -->
-                </div>
+                </div> --}}
                 <div class="col-xxl-4 col-md-8 col-lg-6">
                     <div class="card h-100">
                         <div class="card-inner">
                             <div class="card-title-group mb-2">
                                 <div class="card-title">
-                                    <h6 class="title">Top products</h6>
+                                    <h6 class="title">Produk Terlaris</h6>
                                 </div>
                                 <div class="card-tools">
                                     <div class="dropdown">
-                                        <a href="#" class="dropdown-toggle link link-light link-sm dropdown-indicator" data-toggle="dropdown">Weekly</a>
-                                        <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                                            <ul class="link-list-opt no-bdr">
-                                                <li><a href="#"><span>Daily</span></a></li>
-                                                <li><a href="#" class="active"><span>Weekly</span></a></li>
-                                                <li><a href="#"><span>Monthly</span></a></li>
-                                            </ul>
-                                        </div>
+                                        <label class="dropdown-toggle link link-light link-sm"
+                                            data-toggle="dropdown">30 Hari</label>
                                     </div>
                                 </div>
                             </div>
                             <ul class="nk-top-products">
+                                @foreach ($produkTerlaris as $item)
                                 <li class="item">
-                                    <div class="thumb">
+                                    {{-- <div class="thumb">
                                         <img src="{{ url('assets/images/product/a.png') }}" alt="">
-                                    </div>
+                                    </div> --}}
                                     <div class="info">
-                                        <div class="title">Pink Fitness Tracker</div>
-                                        <div class="price">$99.00</div>
+                                        <div class="title" >{{ $item->nama_produk }}</div>
+                                        <div class="price" id="price">Rp {{ number_format($item->harga, 2, ',', '.') }}</div>
                                     </div>
                                     <div class="total">
-                                        <div class="amount">$990.00</div>
-                                        <div class="count">10 Sold</div>
+                                        <div class="amount" id="amountProduk">Rp {{ number_format($item->total_harga, 2, ',', '.') }}</div>
+                                        <div class="count">{{ $item->total_quantity }} Sold</div>
                                     </div>
                                 </li>
-                                <li class="item">
-                                    <div class="thumb">
-                                        <img src="{{ url('assets/images/product/b.png') }}" alt="">
-                                    </div>
-                                    <div class="info">
-                                        <div class="title">Purple Smartwatch</div>
-                                        <div class="price">$99.00</div>
-                                    </div>
-                                    <div class="total">
-                                        <div class="amount">$990.00</div>
-                                        <div class="count">10 Sold</div>
-                                    </div>
-                                </li>
-                                <li class="item">
-                                    <div class="thumb">
-                                        <img src="{{ url('assets/images/product/c.png') }}" alt="">
-                                    </div>
-                                    <div class="info">
-                                        <div class="title">Black Mi Band Smartwatch</div>
-                                        <div class="price">$99.00</div>
-                                    </div>
-                                    <div class="total">
-                                        <div class="amount">$990.00</div>
-                                        <div class="count">10 Sold</div>
-                                    </div>
-                                </li>
-                                <li class="item">
-                                    <div class="thumb">
-                                        <img src="{{ url('assets/images/product/d.png') }}" alt="">
-                                    </div>
-                                    <div class="info">
-                                        <div class="title">Black Headphones</div>
-                                        <div class="price">$99.00</div>
-                                    </div>
-                                    <div class="total">
-                                        <div class="amount">$990.00</div>
-                                        <div class="count">10 Sold</div>
-                                    </div>
-                                </li>
-                                <li class="item">
-                                    <div class="thumb">
-                                        <img src="{{ url('assets/images/product/e.png') }}" alt="">
-                                    </div>
-                                    <div class="info">
-                                        <div class="title">iPhone 7 Headphones</div>
-                                        <div class="price">$99.00</div>
-                                    </div>
-                                    <div class="total">
-                                        <div class="amount">$990.00</div>
-                                        <div class="count">10 Sold</div>
-                                    </div>
-                                </li>
+                                @endforeach                                
                             </ul>
                         </div><!-- .card-inner -->
                     </div><!-- .card -->
@@ -476,4 +429,27 @@
             </div><!-- .row -->
         </div><!-- .nk-block -->
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var amountElement = document.getElementById('amount');
+            var amountValue = parseFloat(amountElement.textContent);
+    
+            // Format nomor sebagai mata uang dengan dua digit desimal
+            var formattedAmount = amountValue.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
+    
+            // Setel teks yang diformat kembali ke elemen
+            amountElement.textContent = formattedAmount;
+        });
+
+        var orderStatistic = {
+        labels: ["Completed","Cancelled"],
+        dataUnit: 'People',
+        legend: false,
+        datasets: [{
+            borderColor: "#fff",
+            background: ["#ff82b7", "#816bff"],
+            data: [{{ $orderCancel }}, {{ $orderSukses }}]
+        }]
+    };
+    </script>
 @endsection

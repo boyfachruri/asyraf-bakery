@@ -27,7 +27,7 @@ class PenjualanController extends Controller
     {
         # code...
         // $penjualan = DB::select('SELECT * FROM tb_penjualan inner join tb_penjualan_detail on tb_penjualan.no_transaksi = tb_penjualan_detail.no_transaksi');
-        $penjualan = DB::select('SELECT * FROM tb_penjualan');
+        $penjualan = DB::select('SELECT * FROM tb_penjualan order by tanggal_transaksi DESC');
         return DataTables::of($penjualan)->make(true);
     }
 
@@ -40,85 +40,31 @@ class PenjualanController extends Controller
         echo json_encode($penjualan, JSON_PRETTY_PRINT);
     }
 
-    public function exportPenjualan()
+    public function cancelPenjualan(Request $request)
     {
-        return Excel::download(new PenjualanExport(), 'penjualan.xlsx');
+        // $created_at = date('Y-m-d H:i:s');
+        $id =  $request->id;
+        // dd($request->all());
+        $cancel = "Cancelled";
+        $data = DB::table('tb_penjualan')->where('id_penjualan', $id)->update([
+            'status' => $cancel
+            // 'tgl_buat' => date('Y-m-d H:i:s'),
+        ]);
+
+        if (!$data) {
+            $msg = "Transaksi Gagal Dibatalkan: " . $data;
+            $st  = 'Fail';
+        } else {
+            $msg = "Transaksi Berhasil Dibatalkan";
+            $st  = 'OK';
+        }
+        $msg1 = array(
+            "Pesan" => $msg,
+            "St" => $st
+        );
+        echo json_encode($msg1);
+
+        // return redirect('/penjualan')->with('success', 'Transaksi berhasil dibatalkan');
     }
 
-    public function importPenjualan(Request $request)
-    {
-        # code...
-        $file = $request->file('file');
-
-        Excel::import(new PenjualanImport(), $file);
-
-        return redirect()->back()->with('success', 'Data imported successfully.');
-    
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
